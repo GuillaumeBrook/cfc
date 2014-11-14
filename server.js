@@ -33,7 +33,7 @@ app.configure(function() {
         	console.log("error :" + err);
             return;
         }
-
+        console.log(data);
         data = JSON.parse(data);
         if(data.success) {
 	        res.json(data.success);
@@ -65,6 +65,7 @@ app.configure(function() {
     });
 })
 
+
 /*
  *
  * AngularJS Frontend
@@ -83,5 +84,5 @@ app.configure(function() {
 });
 
 
-app.listen(9000);
+app.listen(process.env.PORT || 9000);
 console.log("App listening on port 9000");
