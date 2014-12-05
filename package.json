@@ -5,6 +5,9 @@
   "main"         : "server.js",
   "author"       : "Alexandre Bonhomme",
   "dependencies" : {
+    "angular"    : "~1.3.0",
+    "angular-route": "~1.3.0",
+    "angular-mocks": "~1.3.0",
     "express"    : "~3.4.8",
     "request"    : "~2.33.0 "
   }

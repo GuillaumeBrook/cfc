@@ -39,6 +39,26 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 	});
 
 	/**
+	 * Add of simple buttons
+	 */
+	 /* 
+	 <button type="button" class="btn btn-success" btn-checkbox ng-model="bCycleMap"  ng-change="toggleCycleMap()">Cycle paths</button>
+	 */
+	 /*
+	var myButton = L.control({ position: 'topright' });
+	myButton.onAdd = function (map) {
+	    this._div = L.DomUtil.create('div', 'divButtons');
+	    this._div.innerHTML = '<button ng-change="toggleCycleMap()" ng-model="bCycleMap" btn-checkbox="" class="btn btn-success ng-valid ng-dirty" type="button">Cycle paths</button>'
+	    return this._div;
+	};
+	myButton.addTo(map);
+	*/
+
+function my_button_onClick() {
+    console.log("someone clicked my button");
+}
+
+	/**
 	 * Update user list.
 	 *
 	 * Note: Definitely not the best solution, but it works
@@ -74,12 +94,14 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 	 * Get all rides and associate informations
 	 */
 	$scope.getCarbonFootprint = function() {
+		console.log('getCarbonFootprint entered');
 		var userId = $scope.userId,
 			min  = $scope.dates.min,
 			max  = $scope.dates.max;
 
 		$http.get('/api/' + userId + '/' + min.yyyymmdd() + '/' + max.yyyymmdd())
 			.success(function(data) {
+				console.log('getCarbonFootprint entered');
 				$scope.rides = data;
 
 				// no rides
@@ -199,6 +221,10 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 			    });
 
 			    element.on('valuesChanged', function(e, data) {
+			    	element.dateRangeSlider({
+			    		valueLabels: "change",
+			    		delayOut: 4000,
+			    	});
 			    	// Update slider view
 			    	$scope.$apply(function() {
 			    		ngModelCtrl.$setViewValue(data.values);
