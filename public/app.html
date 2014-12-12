@@ -73,11 +73,12 @@
       </div>
     </div>
 
-    
-
     <!-- Navigation menu -->
-    <div id="navBar" class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="border-radius: 0px 0px 10px 10px;">
-    	<div align="center" class="navbar-bar inner">
+    <div id="navBar" align="center" class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="border-radius: 0px 0px 10px 10px;">
+	    <div style="float: right;" class="container-fluid">
+    		<button id="butToggle" class="btn" onClick="toggleMap()">Toggle Map</button>
+    	</div>
+    	<div class="navbar-bar inner">
         	<div class="container-fluid">
               <h2 id="h2menu">
               <a href="http://localhost:9000/map">
@@ -85,42 +86,26 @@
               </a>
               </h2>
         	</div>
-          </div>
         </div>
     </div><br/ >
 
-        <!--
-    <div class="navbar navbar-inverse navbar-apisense navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <h2 class="navbar-brand" href="http://localhost:9000">Carbon Footprint Calculator</h2>
-          </div>
-          <div class="navbar-collapse collapse">
-	        <div class="navbar-form navbar-right" role="form">
-	          	 <div class="form-group">
-	           	 	Download Apisense for collecting data
-	         	 </div>
-	        	</div>
-      		</div>
-    	</div>
-  </div>
-  -->
-
-    <div class="left center" style="text-align: center;">
+    <div class="left" style="text-align: center;">
 	    <p id="pPick"> Please pick a user. You can also change the date with the slider </p>
-	    <select onclick="showMap();" id="select-user" class="form-control" ng-model="userId" ng-options="u.user as u.user.substring(0,4) for u in users" ng-change="">
+	    <select id="select-user" class="form-control" ng-model="userId" ng-options="u.user as u.user.substring(0,4) for u in users" ng-change="">
 	        <option style="font-weight: bold;" value="">-- List of users --</option>
 	    </select>
 	    <!-- Range slider -->
 	    <div class="row">
-	    	<div id="slider" ng-model="dates" cfc-dateslider></div>
+	    	<div style="display: block;" id="slider" ng-model="dates" cfc-dateslider></div>
 	    </div>
     </div>
+
+    <button id="minPlus" onClick="holdit(this, minPlus, 400, 2);">+</button>
 
     <div id="rightTab" style="text-align: center;">
 		<!-- Statistics table -->
     	<div style="text-align: center;" class="row">
-     	<h2 class="sub-header">Reports</h2>
+     	<h2 class="sub-header">Reports : </h2>
       		<div class="table-responsive">
         		<table style="font-size: 13x;" class="table table-striped table-condensed">
           		<thead>
@@ -194,7 +179,8 @@
     <div id="rightTab2" class="center" style="text-align: center;">
 		<!-- Statistics table -->
     	<div style="text-align: center;" class="row">
-     	<h2 class="sub-header">Reports</h2>
+    	<h2 style="font-style: italic;" class="sub-header">0.00kg{{ carbonFootprint }} ; 0.00kg/km{{ carbonFootprintPerKm }}</h2>
+     	<h2 class="sub-header">Reports: 0.00kg</h2>
       		<div class="table-responsive">
         		<table style="font-size: 13x;" class="table table-striped table-condensed">
           		<thead>
@@ -250,30 +236,55 @@
     	</div>
    	</div>
 
-    <script style="text/javascript">
-      function showMap() {
-        $("map").toggle();
-      }
-    </script>
-
     <script src="libs/jquery-2.1.0.min.js"></script>
     <script src="libs/jquery-ui-1.10.4.min.js"></script>
-    <script src="libs/jQDateRangeSlider-min.js"></script>
+    <script src="libs/js/taphold.js"></script>
     <script src="libs/moment.min.js"></script>
     <script src="ui.js"></script>
 
     <script src="libs/bootstrap/bootstrap.min.js"></script>
     <script src="libs/bootstrap/docs.min.js"></script>
 
+    <script src="libs/jQDateRangeSlider-min.js"></script>
+
     <script src="libs/leaflet-0.7.2/leaflet.js"></script>
     <script src="libs/leaflet.polylineDecorator.min.js"></script>
     <script src="libs/leaflet.markercluster.min.js"></script>
-    <script src="libs/leaflet-0.7.2/easy-button.js"></script>
 
     <script src="libs/angular-1.2.10.min.js"></script>
     <script src="libs/ui-bootstrap-buttons-tpls-0.10.0.min.js"></script>
     <script src="controller.js"></script>
 
     <script src="libs/bootstrap-select/js/bootstrap-select.js"></script>
+
+    <script type="text/javascript">
+      function minPlus() {
+        var dateValues = $("#slider").dateRangeSlider("values");
+        var newMin = dateValues.min.setDate(dateValues.min.getDate()+1);
+        $('#slider').dateRangeSlider("values", newMin, dateValues.max);
+      }
+
+      function holdit(btn, action, start, speedup) {
+          var t;
+
+          var repeat = function () {
+              action();
+              t = setTimeout(repeat, start);
+              start = start / speedup;
+          }
+
+          btn.onmousedown = function() {
+              repeat();
+          }
+
+          btn.onmouseup = function () {
+              clearTimeout(t);
+          }
+
+      }
+
+      $("#minPlus").click();
+    </script> 
+
     </body>
 </html>

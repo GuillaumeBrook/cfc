@@ -221,10 +221,12 @@ function my_button_onClick() {
 			    });
 
 			    element.on('valuesChanged', function(e, data) {
+			    	/*
 			    	element.dateRangeSlider({
 			    		valueLabels: "change",
 			    		delayOut: 4000,
 			    	});
+					*/
 			    	// Update slider view
 			    	$scope.$apply(function() {
 			    		ngModelCtrl.$setViewValue(data.values);

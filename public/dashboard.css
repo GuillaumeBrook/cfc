@@ -15,7 +15,7 @@ body {
   padding-left: 0%;
   padding-right: 0%;
   padding-top: 50px;
-  background-image: url(images/gris_005.jpg);
+  /* background-image: url(images/gris_005.jpg); */
 }
 
 #navBar {
@@ -23,7 +23,7 @@ body {
 }
 
 #h2menu {
-  margin-top: 10px;
+  margin-top: 7px;
 }
 
 #pPick {
@@ -58,23 +58,22 @@ body {
   display: none;
 }
 
+#butToggle {
+  margin-top: 10px;
+  display: none;
+}
+
 #button-wrapper {
     padding-right: 4px;
     position: relative;
     top: 10px;
     width: 100%;
-    z-index: 10000;
+    z-index: 10;
 }
 
 #butCluster {
   margin-top: 5px;
   margin-right: 10px;
-}
-
-#vr {
-  position: absolute;
-  width: 4px;
-  height: 200px;
 }
 
 select, option {
@@ -96,7 +95,7 @@ select, option {
  * Slider
  */
 #slider{
-  padding-top: 10px;
+  padding-top: 33px;
   margin-left: auto;
   margin-right: auto;
   width: 80%;
@@ -121,12 +120,20 @@ select, option {
     width: 90%;
   }
 
+  #navBar {
+    padding-top: 0px;
+  }
+
+
   #rightTab {
     display: none;
   }
   #rightTab2 {
+    padding-top: 10px;
     display: block;
   }
-
-
+  #butToggle {
+    margin-top: 10px;
+    display: block;
+  }
 }
