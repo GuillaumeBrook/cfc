@@ -266,18 +266,18 @@
 
       function holdit(btn, action, start, speedup) {
           var t;
-
+          console.log('holdit called');
           var repeat = function () {
               action();
               t = setTimeout(repeat, start);
               start = start / speedup;
           }
 
-          btn.onmousedown = function() {
+          btn.vonmousedown = function() {
               repeat();
           }
 
-          btn.onmouseup = function () {
+          btn.vonmouseup = function () {
               clearTimeout(t);
           }
 
