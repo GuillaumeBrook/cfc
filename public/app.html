@@ -82,6 +82,11 @@
         	<div class="container-fluid">
               <h2 id="h2menu">
               <a href="http://localhost:9000/map">
+                Carbon Footprint Calculator
+              </a>
+              </h2>
+              <h2 id="h2menu2">
+              <a href="http://localhost:9000/map">
                 Carbon Footprint
               </a>
               </h2>
@@ -89,7 +94,7 @@
         </div>
     </div><br/ >
 
-    <div class="left" style="text-align: center;">
+    <div class="left center" style="text-align: center;">
 	    <p id="pPick"> Please pick a user. You can also change the date with the slider </p>
 	    <select id="select-user" class="form-control" ng-model="userId" ng-options="u.user as u.user.substring(0,4) for u in users" ng-change="">
 	        <option style="font-weight: bold;" value="">-- List of users --</option>
@@ -100,7 +105,7 @@
 	    </div>
     </div>
 
-    <button id="minPlus" onClick="holdit(this, minPlus, 400, 2);">+</button>
+    <!-- <button id="minPlus" onClick="holdit(this, minPlus, 400, 2);">+</button> -->
 
     <div id="rightTab" style="text-align: center;">
 		<!-- Statistics table -->
@@ -263,7 +268,6 @@
         var newMin = dateValues.min.setDate(dateValues.min.getDate()+1);
         $('#slider').dateRangeSlider("values", newMin, dateValues.max);
       }
-
       function holdit(btn, action, start, speedup) {
           var t;
           console.log('holdit called');
@@ -273,17 +277,21 @@
               start = start / speedup;
           }
 
-          btn.vonmousedown = function() {
+          btn.onmousedown = function() {
               repeat();
           }
 
-          btn.vonmouseup = function () {
+          btn.onmouseup = function () {
               clearTimeout(t);
           }
 
       }
-
       $("#minPlus").click();
+
+
+      function toggleMap() {
+        $("#map").slideToggle();
+      }
     </script> 
 
     </body>
