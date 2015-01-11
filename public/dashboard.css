@@ -18,32 +18,38 @@ body {
   /* background-image: url(images/gris_005.jpg); */
 }
 
+a {
+  color: #EB9100;
+}
+
+a:hover {
+  color: #fe7d00;
+}
+
+h4 {
+  color: #EB9100;
+}
+
 #navBar {
   padding-top: 0px;
 }
 
 #h2menu {
   margin-top: 7px;
+  margin-left: 20px;
+  text-decoration: bold;
 }
 
 #h2menu2 {
+  padding-left: 15px;
   display: none;
+  text-decoration: bold;
 }
 
 #pPick {
   font-size: 16px;
-  /* color: #EB9100; */
   font-weight: bold;
- /* background-color: white; */
-}
-
-.centerColor {
-  padding-top:5px; padding-bottom: 5px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 30%;
-  background-color: #b0e0e6; /*  b0e0e6 */ /* EB9100 */ 
-  border-radius: 5px;
+  text-align : center;
 }
 
 .left {
@@ -64,7 +70,27 @@ body {
 
 #butToggle {
   margin-top: 10px;
+  height : 35px;
   display: none;
+}
+
+.reportTitle {
+  color: red;
+}
+
+select, option {
+  text-align: center;
+  font-weight: bold;
+}
+
+/*
+ * Leaflet map and associate buttons
+ */
+#map{
+  border: 1px solid black;
+  margin-left: 30px;
+  width: 40%;
+  height: 60%;
 }
 
 #button-wrapper {
@@ -80,19 +106,8 @@ body {
   margin-right: 10px;
 }
 
-select, option {
-  text-align: center;
-  font-weight: bold;
-}
-
-/*
- * Leaflet map
- */
-#map{
-  border: 1px solid black;
-  margin-left: 30px;
-  width: 40%;
-  height: 60%;
+#butAbout {
+  display: none;
 }
 
 /*
@@ -105,8 +120,39 @@ select, option {
   width: 80%;
 }
 
+/*
+ * Calendars
+ */
+#calendars {
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 0px;
+}
+
+#dpTo {
+  padding-right: 2px;
+}
+
+/*
+ * Bottom, Download
+ */
+#hrBot {
+  border-width: 2px;
+}
+
+#aBot {
+  color: #337AB7;
+}
+
+#alertBot {
+  width: 75%; 
+  margin: auto;
+  padding-bottom: 15px;
+}
+
 /* When the screen width is under 1024px */
 @media screen and (max-width: 1024px) {
+
   #map {
     margin-left: auto;
     margin-right: auto;
@@ -139,16 +185,32 @@ select, option {
     display: block;
   }
   #butToggle {
+    padding-bottom: 10px;
+    display: inline;
+  }
+
+  #butAbout {
     margin-top: 10px;
-    display: block;
+    display: inline;
+  }
+
+  #formTopButtons {
+    margin-left: 15px;
   }
 
   #h2menu {
+    padding-left: 10px;
     display: none;
   }
 
   #h2menu2 {
     display: block;
-    margin-top: 7px;
+    margin-top: 12px;
+    margin-left: 64px;
+    text-decoration: bold;
+  }
+
+  #abouth4 {
+    display: none;
   }
 }

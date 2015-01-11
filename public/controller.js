@@ -3,6 +3,7 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 .controller('mainController', function($scope, $http) {
 
 	$scope.formData = {};
+	$scope.dates = {min: "", max: ""};
 
 	/**
 	 * Layers
@@ -39,50 +40,28 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 	});
 
 	/**
-	 * Add of simple buttons
-	 */
-	 /* 
-	 <button type="button" class="btn btn-success" btn-checkbox ng-model="bCycleMap"  ng-change="toggleCycleMap()">Cycle paths</button>
-	 */
-	 /*
-	var myButton = L.control({ position: 'topright' });
-	myButton.onAdd = function (map) {
-	    this._div = L.DomUtil.create('div', 'divButtons');
-	    this._div.innerHTML = '<button ng-change="toggleCycleMap()" ng-model="bCycleMap" btn-checkbox="" class="btn btn-success ng-valid ng-dirty" type="button">Cycle paths</button>'
-	    return this._div;
-	};
-	myButton.addTo(map);
-	*/
-
-function my_button_onClick() {
-    console.log("someone clicked my button");
-}
-
-	/**
 	 * Update user list.
 	 *
 	 * Note: Definitely not the best solution, but it works
 	 */
 	$scope.updateUsersList = function() {
-
 		var updateList = function(users) {
+			//$('#optionDefault').text("-- Loading --");
 			$scope.users = []
 			users.forEach(function(user) {
-
 				$http.get('/api/' + user.user + '/' + $scope.dates.min.yyyymmdd() + '/' + $scope.dates.max.yyyymmdd())
 					.success(function(data) {
-
 						// rides founds
 						if(data.length > 0) {
 							$scope.users.push(user);
 						}
+
 					})
 					.error(function(data) {
 						console.log('Error: ' + data);
 					});
 			});
 		};
-
 		$http.get('/api/users')
 			.success( updateList )
 			.error(function(data) {
@@ -94,14 +73,14 @@ function my_button_onClick() {
 	 * Get all rides and associate informations
 	 */
 	$scope.getCarbonFootprint = function() {
-		console.log('getCarbonFootprint entered');
+		//console.log('getCarbonFootprint entered');
 		var userId = $scope.userId,
 			min  = $scope.dates.min,
 			max  = $scope.dates.max;
 
 		$http.get('/api/' + userId + '/' + min.yyyymmdd() + '/' + max.yyyymmdd())
 			.success(function(data) {
-				console.log('getCarbonFootprint entered');
+				//console.log('getCarbonFootprint entered');
 				$scope.rides = data;
 
 				// no rides
@@ -193,47 +172,25 @@ function my_button_onClick() {
 	};
 })
 
-.directive('cfcDateslider', function() {
-    return {
-        restrict: 'A',
-        require : 'ngModel',
-        link : function ($scope, element, attrs, ngModelCtrl) {
-            $(function(){
-                element.dateRangeSlider({
-			    	arrows: false,
-			    	wheelMode: "zoom",
-			    	step: {
-						days: 1
-					},
-					bounds:{
-					    min: new Date(2013, 10, 02),
-					    max: new Date()
-					  },
-					defaultValues: {
-						min: new Date(2013, 11, 28),
-						max: new Date()
-					},
-					range: {
-			    		min: {
-			    			days: 1
-			    		},
-			    	}
-			    });
+.directive('cfcDatescalendars', function() {
+	return {
+		restrict: 'A',
+		require	: 'ngModel',
+		link : function ($scope, element, attrs, ngModelCtrl) {
+			$(function() {
 
-			    element.on('valuesChanged', function(e, data) {
-			    	/*
-			    	element.dateRangeSlider({
-			    		valueLabels: "change",
-			    		delayOut: 4000,
-			    	});
-					*/
-			    	// Update slider view
-			    	$scope.$apply(function() {
-			    		ngModelCtrl.$setViewValue(data.values);
-			    	});
+				setIntervalDate(new Date(2013, 10, 02), new Date());
+				$scope.dates.min = new Date(2013, 10, 02);
+				$scope.dates.max = new Date();
+				$scope.updateUsersList();
 
-			    	// update users list
-			    	$scope.updateUsersList();
+                element.on('changeDate', function(e) {
+                	//var nameCalendar = e.target.id;
+                	//$scope.dates.min = new Date(2013, 10, 02);
+					//$scope.dates.max = new Date();
+
+                	// update users list
+			    	//$scope.updateUsersList();
 
 			    	// No user selected
 			    	if ($scope.userId == undefined) {
@@ -242,10 +199,11 @@ function my_button_onClick() {
 
 			    	// Update data
 			    	$scope.getCarbonFootprint($scope.userId);
-			    });
-            });
-        }
-    };
+                });
+				
+			});
+		}
+	};
 });
 
 /**
@@ -308,4 +266,23 @@ function addContent(map, rides) {
 		    Max speed: '+ ride.maxSpeed.toFixed(1) +' km/h<br>\
 		    Carbon Footprint: '+ ride.emission.toFixed(1) +' Kg eq. CO₂');
 	});
+}
+
+/**
+ * Set a logic interval of dates in the calendars by taking the first date and the last date of the user
+ */
+function setIntervalDate(dateMin, dateMax) {
+	$('#dpFrom').datepicker({
+		startDate: dateMin,
+		endDate: dateMax
+	});
+	$('#dpFrom').datepicker("setDate", dateMin);
+
+	$('#dpTo').datepicker({
+		startDate: dateMin,
+		endDate: dateMax
+	});
+	var d = dateMax;
+	$('#dpTo').datepicker("setDate", new Date( d.getFullYear(), d.getMonth(), d.getDate() ));
+	//if dateMax is the today's day date, we have to split the date like previous line. $('#dpFrom').datepicker("setDate", dateMax); will not work.
 }
