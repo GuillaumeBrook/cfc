@@ -70,7 +70,7 @@ app.configure(function() {
  * AngularJS Frontend
  *
  */
-.get('/map', function(req, res) {
+.get('/', function(req, res) {
     res.sendfile('public/app.html');
 })
 

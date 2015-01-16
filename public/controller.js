@@ -81,7 +81,10 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 		$http.get('/api/' + userId + '/' + min.yyyymmdd() + '/' + max.yyyymmdd())
 			.success(function(data) {
 				//console.log('getCarbonFootprint entered');
-				$scope.rides = data;
+				//$scope.rides = data;
+				var adapter = new RidesAdapter(data.success);
+        		var rides = adapter.computeRides();
+        		$scope.rides = rides;
 
 				// no rides
 				if(data.length <= 0) {
