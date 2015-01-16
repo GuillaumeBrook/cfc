@@ -13,14 +13,12 @@
     <title>Carbon Footprint - Dashboard</title>
     <link rel="stylesheet" href="libs/css/jquery-ui.min.css">
     <link rel="stylesheet" href="libs/css/bootstrap.min.css">
-    <link red="stylesheet" href="libs/css/bootstrap-select.min.css">
-    <link rel="stylesheet" href="libs/css/iThing.css"> 
+    <link rel="stylesheet" href="libs/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="libs/css/datepicker.css">
     
     <!-- Style -->
     <link rel="stylesheet" href="libs/css/bootstrap-theme.min.css">
     <!-- <link rel="stylesheet" href="libs/css/bootstrap-united.min.css"> -->
-    <!-- <link rel="stylesheet" href="libs/css/bootstrap-select.min.css" /> -->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -51,6 +49,7 @@
             <h4>Authors</h4>
             <ul>
                 <li>Alexandre Bonhomme</li>
+                <li>Douchet Guillaume</li>
                 <li>Christophe Ribeiro</li>
                 <li>Nicolas Haderer</li>
             </ul>
@@ -125,10 +124,8 @@
     <div class="left center" style="text-align: center;">
 	    <p id="pPick"> Please pick a user. You can also change the interval of dates.</p>
       <form class="form-horizontal" role="form">
-  	    <select id="select-user" class="form-control" data-live-search="true" ng-model="userId" ng-options="u.user as u.user.substring(0,4) for u in users" ng-change="getCarbonFootprint()">
+  	    <select id="select-user" class="form-control selectpicker" data-live-search="true" ng-model="userId" ng-options="u.user as u.user.substring(0,4) for u in users" ng-change="getCarbonFootprint()">
   	        <option id="optionDefault" style="font-weight: bold;" value="">-- List of users --</option>
-            <option>Blabla</option>
-            <option>Test</option>
   	    </select>
       </form>
 

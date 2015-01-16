@@ -95,6 +95,10 @@ select, option {
   font-weight: bold;
 }
 
+.selectpicker {
+  text-align: center;
+}
+
 /*
  * Leaflet map and associate buttons
  */
