@@ -14,7 +14,7 @@ html, body{
 body {
   padding-left: 0%;
   padding-right: 0%;
-  padding-top: 50px;
+  padding-top: 0px; /* if .navBar position is fixed, you can put a 50px padding-top */
   /* background-image: url(images/gris_005.jpg); */
 }
 
@@ -28,6 +28,10 @@ a:hover {
 
 h4 {
   color: #EB9100;
+}
+
+.navbar {
+  position: relative;
 }
 
 #navBar {
@@ -74,6 +78,14 @@ h4 {
   display: none;
 }
 
+#butDwl {
+  display: none;
+}
+
+#butAbout {
+  display: none;
+}
+
 .reportTitle {
   color: red;
 }
@@ -104,10 +116,6 @@ select, option {
 #butCluster {
   margin-top: 5px;
   margin-right: 10px;
-}
-
-#butAbout {
-  display: none;
 }
 
 /*
@@ -184,13 +192,14 @@ select, option {
     padding-top: 10px;
     display: block;
   }
+
   #butToggle {
-    padding-bottom: 10px;
     display: inline;
   }
-
   #butAbout {
-    margin-top: 10px;
+    display: inline;
+  }
+  #butDwl {
     display: inline;
   }
 
@@ -206,11 +215,29 @@ select, option {
   #h2menu2 {
     display: block;
     margin-top: 12px;
-    margin-left: 64px;
+    margin-left: 0%;
     text-decoration: bold;
   }
 
   #abouth4 {
     display: none;
+  }
+
+  .thReportMob {
+    display: none;
+  }
+
+}
+
+/* When the screen width is under 480px */
+@media screen and (max-width: 480px) {
+  .thReport {
+    display: none;
+  }
+  .thReportMob {
+    display: block;
+  }
+  #alertBot {
+    width: 90%;
   }
 }

@@ -47,7 +47,7 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 	$scope.updateUsersList = function() {
 		var updateList = function(users) {
 			//$('#optionDefault').text("-- Loading --");
-			$scope.users = []
+			$scope.users = [] // delete all users from $scope.users
 			users.forEach(function(user) {
 				$http.get('/api/' + user.user + '/' + $scope.dates.min.yyyymmdd() + '/' + $scope.dates.max.yyyymmdd())
 					.success(function(data) {
