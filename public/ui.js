@@ -16,3 +16,19 @@ Date.prototype.yyyymmdd = function() {
     
     return yyyy +"-"+ (mm[1]?mm:"0"+mm[0]) +"-"+ (dd[1]?dd:"0"+dd[0]);     
 };
+
+function toggleContentLoading() {
+	$('.load').toggle();
+}
+
+function showContentLoading() {
+	$('.load').show();
+}
+
+function hideContentLoading() {
+	$('.load').hide();
+}
+
+function clearTab() {
+
+}

@@ -121,14 +121,20 @@ select, option {
   margin-right: 10px;
 }
 
-/*
- * Slider
+/**
+ * Reports table
  */
-#slider{
-  padding-top: 33px;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
+.bg-table-car{
+  background-color: #f2dede;
+}
+.bg-table-train{
+  background-color: #d9edf7;
+}
+.bg-table-walking{
+  background-color: #dff0d8;
+}
+.bg-table-undefined {
+  background-color: #d3d3d3;
 }
 
 /*
@@ -159,6 +165,11 @@ select, option {
   width: 75%; 
   margin: auto;
   padding-bottom: 15px;
+}
+
+.load {
+  padding-top: 0px;
+  display: none;
 }
 
 /* When the screen width is under 1024px */

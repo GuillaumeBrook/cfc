@@ -73,18 +73,19 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 	 * Get all rides and associate informations
 	 */
 	$scope.getCarbonFootprint = function() {
-		//console.log('getCarbonFootprint entered');
+		console.log('getCarbonFootprint entered');
+		showContentLoading();
 		var userId = $scope.userId,
 			min  = $scope.dates.min,
 			max  = $scope.dates.max;
 
 		$http.get('/api/' + userId + '/' + min.yyyymmdd() + '/' + max.yyyymmdd())
 			.success(function(data) {
-				//console.log('getCarbonFootprint entered');
+				console.log('getCarbonFootprint entered');
 				//$scope.rides = data;
-				var adapter = new RidesAdapter(data.success);
-        		var rides = adapter.computeRides();
-        		$scope.rides = rides;
+				//var adapter = new RidesAdapter(data.success);
+        		//var rides = adapter.computeRides();
+        		$scope.rides = data;
 
 				// no rides
 				if(data.length <= 0) {
@@ -125,6 +126,8 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 							colorClass = 'bg-table-car'; break;
 						case 'walking':
 							colorClass = 'bg-table-walking'; break;
+						case 'undefined':
+							colorClass = 'bg-table-undefined'; break;
 						default:
 							colorClass = '';
 						}
@@ -145,10 +148,12 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 
 				// Rides layers and clusters layers
 				clearMap(map);
+				hideContentLoading();
 				addContent(map, data);
 			})
 			.error(function(data) {
 				console.log('Error: ' + data);
+				hideContentLoading();
 			});
 	};
 
@@ -189,8 +194,8 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 
                 element.on('changeDate', function(e) {
                 	//var nameCalendar = e.target.id;
-                	//$scope.dates.min = new Date(2013, 10, 02);
-					//$scope.dates.max = new Date();
+                	$scope.dates.min = $( "#dpFrom" ).datepicker( "getDate" );
+					$scope.dates.max = $( "#dpTo" ).datepicker( "getDate" );
 
                 	// update users list
 			    	//$scope.updateUsersList();
