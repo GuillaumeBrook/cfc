@@ -247,6 +247,7 @@ select, option {
     display: block;
   }
 
+  /** Menu **/
   #butToggle {
     display: inline;
   }
@@ -255,10 +256,6 @@ select, option {
   }
   #butDwl {
     display: inline;
-  }
-
-  #formTopButtons {
-    margin-left: 15px;
   }
 
   #h2menu {
@@ -277,6 +274,10 @@ select, option {
   }
 
   .thReportMob {
+    display: none;
+  }
+
+  #emission {
     display: none;
   }
 
