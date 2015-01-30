@@ -41,13 +41,11 @@ h4 {
 #h2menu {
   margin-top: 7px;
   margin-left: 20px;
-  text-decoration: bold;
 }
 
 #h2menu2 {
   padding-left: 15px;
   display: none;
-  text-decoration: bold;
 }
 
 #pPick {
@@ -177,6 +175,10 @@ select, option {
   display: none;
 }
 
+#h1CF {
+  display: inline;
+}
+
 /* When the screen width is under 1024px */
 @media screen and (max-width: 1024px) {
 
@@ -202,6 +204,8 @@ select, option {
 
   #navBar {
     padding-top: 0px;
+    border-radius: 0px 0px 10px 10px; 
+    background-color: #222222;
   }
 
   #rightTab {
@@ -235,7 +239,6 @@ select, option {
     display: block;
     margin-top: 12px;
     margin-left: 0%;
-    text-decoration: bold;
   }
 
   #abouth4 {
