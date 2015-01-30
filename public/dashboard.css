@@ -172,6 +172,11 @@ select, option {
   display: none;
 }
 
+.load2 {
+  padding-top: 0px;
+  display: none;
+}
+
 /* When the screen width is under 1024px */
 @media screen and (max-width: 1024px) {
 

@@ -48,6 +48,7 @@ app.configure(function() {
 	var user = req.params.user;
 	var min = req.params.min;
 	var max = req.params.max;
+    console.log(min);
 
 	apisense.query('rides.js', {user: user, min: min, max: max}, function (err, resp, data) {
         if (err) {

@@ -54,6 +54,7 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 						// rides founds
 						if(data.length > 0) {
 							$scope.users.push(user);
+							//console.log(user.user+" : "+user.dates[0]);
 						}
 
 					})
@@ -150,6 +151,7 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 				clearMap(map);
 				hideContentLoading();
 				addContent(map, data);
+				//$scope.setIntervalDate(new Date(), new Date());
 			})
 			.error(function(data) {
 				console.log('Error: ' + data);
@@ -178,6 +180,39 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 			map.removeLayer(ocm);
 		}
 	};
+
+	$scope.setIntervalDate = function(dateMin, dateMax) {
+		$('#dpFrom').datepicker({
+			startDate: dateMin,
+			endDate: dateMax
+		});
+		$('#dpFrom').datepicker("setDate", dateMin);
+
+		$('#dpTo').datepicker({
+			startDate: dateMin,
+			endDate: dateMax
+		});
+		var d = dateMax;
+		$('#dpTo').datepicker("setDate", new Date( d.getFullYear(), d.getMonth(), d.getDate() ));
+		//if dateMax is the today's day date, we have to split the date like previous line. $('#dpFrom').datepicker("setDate", dateMax); will not work for no reason.
+	};
+
+	$scope.setMinDate = function(userId) {
+		$scope.users.forEach(function(user) {
+			if(user.user == userId) {
+				console.log(user.dates[0]);
+				$('#dpFrom').datepicker({
+					startDate: user.dates[0],
+					endDate: new Date()
+				});
+				var d = user.dates[0].split('-');
+				var min = new Date( d[0], d[1]-1, d[2] );
+				//$('#dpFrom').datepicker("option", "minDate", min); /* not working */
+				$('#dpFrom').datepicker("setDate", min);
+			}
+		});
+	}
+
 })
 
 .directive('cfcDatescalendars', function() {
@@ -187,7 +222,7 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 		link : function ($scope, element, attrs, ngModelCtrl) {
 			$(function() {
 
-				setIntervalDate(new Date(2013, 10, 02), new Date());
+				$scope.setIntervalDate(new Date(2013, 10, 02), new Date());
 				$scope.dates.min = new Date(2013, 10, 02);
 				$scope.dates.max = new Date();
 				$scope.updateUsersList();
@@ -274,23 +309,4 @@ function addContent(map, rides) {
 		    Max speed: '+ ride.maxSpeed.toFixed(1) +' km/h<br>\
 		    Carbon Footprint: '+ ride.emission.toFixed(1) +' Kg eq. CO₂');
 	});
-}
-
-/**
- * Set a logic interval of dates in the calendars by taking the first date and the last date of the user
- */
-function setIntervalDate(dateMin, dateMax) {
-	$('#dpFrom').datepicker({
-		startDate: dateMin,
-		endDate: dateMax
-	});
-	$('#dpFrom').datepicker("setDate", dateMin);
-
-	$('#dpTo').datepicker({
-		startDate: dateMin,
-		endDate: dateMax
-	});
-	var d = dateMax;
-	$('#dpTo').datepicker("setDate", new Date( d.getFullYear(), d.getMonth(), d.getDate() ));
-	//if dateMax is the today's day date, we have to split the date like previous line. $('#dpFrom').datepicker("setDate", dateMax); will not work.
 }
