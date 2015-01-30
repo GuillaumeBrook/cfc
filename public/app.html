@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="libs/css/datepicker.css">
     
     <!-- Style -->
-    <link rel="stylesheet" href="libs/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="libs/css/bootstrap-united.min.css">
     <!-- <link rel="stylesheet" href="libs/css/bootstrap-united.min.css"> -->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -87,8 +87,65 @@
     <div id="navBar" style="text-align: center" class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 	    <div style="float: right;" class="container-fluid">
         <h4 id="abouth4" style="color: grey; margin-top: 15px;">
+          <a onclick="toggleEmission();">Used values</a> --
           <a data-target="#about" data-toggle="modal" href="#">About</a>
         </h4>
+        <div id="emission" style="position: absolute; padding-top: 12px; width: 180px;">
+          <div class="row rowEmission">
+          <div class="col-md-1 progress-bar-header-img">
+            <img src="/images/plane-icon.png" alt="plane-icon">
+          </div>
+          <div class="col-md-8">
+            <div class="progress">
+              <div class="progress-bar progress-bar-plane" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">388g/km</div>
+            </div>
+          </div>
+        </div>
+        <div class="row rowEmission">
+          <div class="col-md-1 progress-bar-header-img">
+            <img src="/images/car-icon.png" alt="car-icon">
+          </div>
+          <div class="col-md-8">
+            <div class="progress">
+              <div class="progress-bar progress-bar-car" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%">
+                137.5g/km
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row rowEmission">
+          <div class="col-md-1 progress-bar-header-img">
+            <img src="/images/bus-icon.png" alt="bus-icon">
+          </div>
+          <div class="col-md-8">
+            <div class="progress">
+              <div class="progress-bar progress-bar-bus" role="progressbar" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100" style="width: 22%">
+                88
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row rowEmission">
+          <div class="col-md-1 progress-bar-header-img">
+            <img src="/images/train-icon.png" alt="train-icon">
+          </div>
+          <div class="col-md-8">
+            <div class="progress">
+              <div class="progress-bar progress-bar-train" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 15%">40</div>
+            </div>
+          </div>
+        </div>
+        <div class="row rowEmission">
+          <div class="col-md-1 progress-bar-header-img">
+            <img src="/images/walk-icon.png" alt="walk-icon">
+          </div>
+          <div class="col-md-8">
+            <div class="progress">
+              <div class="progress-bar progress-bar-train" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+        </div>
         <div class="form-group">
       		<button id="butToggle" onClick="toggleMap()">
             <img src="images/icon-map.png" height="32" width="32" alt="Toggle Map">
@@ -121,6 +178,8 @@
         </div>
     </div><br />
 
+
+
     <div class="left center" style="text-align: center;">
 	    <p id="pPick"> Please pick a user. You can also change the interval of dates.</p>
       <form class="form-horizontal" role="form">
@@ -145,7 +204,7 @@
     	<div style="text-align: center;" class="row">
      	<h2 class="reportTitle sub-header">Reports: </h2>
       <img class="load" src="images/loading.gif" alt="Loading...">
-      <h4 style="display: block;" class="sub-header">
+      <h4 style="display: none;" class="sub-header">
         {{ carbonFootprint }} <br />
       <small>{{ carbonFootprintPerKm }}</small>
       </h4>
@@ -171,6 +230,7 @@
        			</table>
       		</div>
     	</div>
+      <p>&nbsp</p>
    	</div>
 
     <img class="load2" src="images/loading.gif" alt="Loading...">
@@ -184,6 +244,62 @@
             	Clusters</button>
          </div> 
     </div>
+
+    <!--
+    <br />
+    <div class="left center">
+      <div class="row">
+          <div class="col-md-1 progress-bar-header-img">
+            <img src="/images/plane-icon.png" alt="plane-icon">
+          </div>
+          <div class="col-md-8">
+            <div class="progress">
+              <div class="progress-bar progress-bar-plane" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">50</div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1 progress-bar-header-img">
+            <img src="/images/car-icon.png" alt="car-icon">
+          </div>
+          <div class="col-md-8">
+            <div class="progress">
+              <div class="progress-bar progress-bar-car" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="width: 65%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1 progress-bar-header-img">
+            <img src="/images/bus-icon.png" alt="bus-icon">
+          </div>
+          <div class="col-md-8">
+            <div class="progress">
+              <div class="progress-bar progress-bar-bus" role="progressbar" aria-valuenow="22" aria-valuemin="0" aria-valuemax="100" style="width: 22%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1 progress-bar-header-img">
+            <img src="/images/train-icon.png" alt="train-icon">
+          </div>
+          <div class="col-md-8">
+            <div class="progress">
+              <div class="progress-bar progress-bar-train" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width: 10%"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-1 progress-bar-header-img">
+            <img src="/images/walk-icon.png" alt="walk-icon">
+          </div>
+          <div class="col-md-8">
+            <div class="progress">
+              <div class="progress-bar progress-bar-train" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+    -->
 
     <div id="rightTab2" class="center" style="text-align: center;">
 		<!-- Statistics table -->

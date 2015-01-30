@@ -74,7 +74,6 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 	 * Get all rides and associate informations
 	 */
 	$scope.getCarbonFootprint = function() {
-		console.log('getCarbonFootprint entered');
 		showContentLoading();
 		var userId = $scope.userId,
 			min  = $scope.dates.min,
@@ -208,6 +207,9 @@ angular.module('CarbonFootprintCalculator', ['ui.bootstrap.buttons'])
 				var d = user.dates[0].split('-');
 				var min = new Date( d[0], d[1]-1, d[2] );
 				//$('#dpFrom').datepicker("option", "minDate", min); /* not working */
+				$("#dpFrom").datepicker({
+    				minDate: min  
+				});
 				$('#dpFrom').datepicker("setDate", min);
 			}
 		});

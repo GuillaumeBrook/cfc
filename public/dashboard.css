@@ -35,6 +35,7 @@ h4 {
 }
 
 #navBar {
+  background-color: #222222;
   padding-top: 0px;
 }
 
@@ -177,6 +178,36 @@ select, option {
 
 #h1CF {
   display: inline;
+}
+
+#h2menu {
+  margin-top: 10px;
+  margin-left: 100px;
+}
+
+/** Progress bar **/
+.progress{
+  margin-bottom: 0px;
+}
+.progress-bar-header-img{
+  text-align: right;
+}
+.progress-bar-plane{
+  background-color: #333;
+}
+.progress-bar-car{
+  background-color: #d9534f;
+}
+.progress-bar-bus{
+  background-color: #f0ad4e;
+}
+.progress-bar-train{
+  background-color: #5bc0de;
+}
+
+/** Row from Emission */
+.rowEmission {
+  width: 100%;
 }
 
 /* When the screen width is under 1024px */

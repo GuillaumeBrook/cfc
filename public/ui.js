@@ -29,6 +29,10 @@ function hideContentLoading() {
 	$('.load').hide();
 }
 
-function clearTab() {
+function toggleEmission() {
+	$('#emission').slideToggle();
+}
 
+function hideEmission() {
+	$('#emission').hide();
 }
