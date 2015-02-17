@@ -290,6 +290,8 @@ function addContent(map, rides) {
 		// define path color
 		var color;
 		switch(ride.type) {
+		case 'plane' :
+			color = 'black'; break;
 		case 'train':
 			color = 'blue'; break;
 		case 'car':
@@ -310,5 +312,8 @@ function addContent(map, rides) {
 		    Average acceleration: '+ ride.averageAcc.toFixed(3) +' m/s&sup2;<br>\
 		    Max speed: '+ ride.maxSpeed.toFixed(1) +' km/h<br>\
 		    Carbon Footprint: '+ ride.emission.toFixed(1) +' Kg eq. CO₂');
+		console.log('Distance :'+ride.distance.toFixed(3));
+		console.log("Average speed:"+ride.averageSpeed.toFixed(1));
+		console.log("Max speed:"+ride.maxSpeed.toFixed(1));
 	});
 }

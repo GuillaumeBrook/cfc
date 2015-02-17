@@ -26,7 +26,8 @@ app.configure(function() {
  */
 /**
  * Return all users ID in JSON format
- *//*
+ */
+//.get('localhost:9000/api/users', function(req, res) {
 .get('/api/users', function(req, res) {
 	apisense.query('users.js', {}, function (err, resp, data) {
         if (err) {
@@ -39,11 +40,12 @@ app.configure(function() {
 	        res.json(data.success);
         }
     });
-})*/
+})
 
 /**
  * Return all user's rides for a given date in JSON format
- *//*
+ */
+//.get('localhost:9000/api/:user/:min/:max', function(req, res) {
 .get('/api/:user/:min/:max', function(req, res) {
 	var user = req.params.user;
 	var min = req.params.min;
@@ -64,7 +66,7 @@ app.configure(function() {
 	        res.json(rides);
         }
     });
-})*/
+})
 
 /*
  *
